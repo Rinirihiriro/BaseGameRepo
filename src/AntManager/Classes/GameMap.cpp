@@ -5,6 +5,7 @@
 #include "MapTile.h"
 #include "Define.h"
 #include "Ant.h"
+#include "Goal.h"
 
 USING_NS_CC;
 
@@ -30,7 +31,9 @@ void GameMap::initWithModel(MapModel* mapModel)
 {
 	m_MapModel = mapModel;
 	makeTiles();
+	makeAreas();
 }
+
 
 void GameMap::makeTiles()
 {
@@ -54,6 +57,26 @@ void GameMap::makeTiles()
 	}
 }
 
+void GameMap::makeAreas()
+{
+	auto goal1 = Goal::create();
+	goal1->initWithRect(Rect(16 * 3, 640 - 16 * 2, 16 * 4, 16 * 2));
+	addChild(goal1);
+	auto goal2 = Goal::create();
+	goal2->initWithRect(Rect(16 * 13, 640 - 16 * 2, 16 * 4, 16 * 2));
+	addChild(goal2);
+	auto goal3 = Goal::create();
+	goal3->initWithRect(Rect(16 * 23, 640 - 16 * 2, 16 * 4, 16 * 2));
+	addChild(goal3);
+}
+
+void GameMap::addListener()
+{
+	cocos2d::EventListenerCustom* listener = cocos2d::EventListenerCustom::create(
+		"add Ant", CC_CALLBACK_0(GameMap::addAnt, this));
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+}
+
 void GameMap::addAnt()
 {
 	auto ant = Ant::create();
@@ -68,11 +91,3 @@ void GameMap::addAnt()
 	addChild(ant);
 	m_Ants.push_back(ant);
 }
-
-void GameMap::addListener()
-{
-	cocos2d::EventListenerCustom* listener = cocos2d::EventListenerCustom::create(
-		"add Ant", CC_CALLBACK_0(GameMap::addAnt, this));
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-}
-

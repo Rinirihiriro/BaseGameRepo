@@ -12,6 +12,8 @@ public:
 private:
 	void			makeLabels();
 	void			makeSprites();
+	void			addListener();
+
 private:
 	cocos2d::Label*	m_Ants;
 	cocos2d::Label*	m_Money;

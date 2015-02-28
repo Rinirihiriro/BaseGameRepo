@@ -4,6 +4,7 @@
 #include "DataManager.h"
 #include "PlayerModel.h"
 #include "MapModel.h"
+#include "Macro.h"
 
 USING_NS_CC;
 
@@ -28,6 +29,7 @@ bool MachineModel::sellAnts(int numOfAnts)
 	
 	player->setMoney(curMoney + cost);
 	m_AvailableAntsCount -= numOfAnts;
+	EVENT_DISPATCH("board Update");
 
 	return true;
 }
@@ -42,6 +44,8 @@ bool MachineModel::buyAnts(int numOfAnts)
 
 	m_AvailableAntsCount += numOfAnts;
 	player->setMoney(curMoney - cost);
+	EVENT_DISPATCH("board Update");
+
 	return true;
 }
 
@@ -58,7 +62,8 @@ void MachineModel::initFromFile(const std::string& filePath)
 	std::string str = GET_DATA_MANAGER()->readFromFile(filePath);
 	Json::Value root = GET_DATA_MANAGER()->toJsonFromString(str);
 	
-	m_ExchangeRate = root["exchangeRate"].asInt();
+	//m_ExchangeRate = root["exchangeRate"].asInt();
+	m_ExchangeRate = 1;
 	m_MapModel->initFromJson(root["tile"]);
 }
 

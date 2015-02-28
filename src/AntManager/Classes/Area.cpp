@@ -1,10 +1,11 @@
 #include "Pch.h"
 #include "Area.h"
+#include "Type.h"
 
 USING_NS_CC;
 
 Area::Area(const float activeTime, const float inactiveTime)
-	:m_Active(false), m_ActiveTime(activeTime), m_InactiveTime(inactiveTime)
+	:m_Active(false), m_ActiveTime(activeTime), m_InactiveTime(inactiveTime), m_Type(AT_NONE)
 {
 
 }

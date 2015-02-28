@@ -114,6 +114,9 @@
     <ClCompile Include="..\Classes\Turntable.cpp">
       <Filter>Area</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Goal.cpp">
+      <Filter>Area</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -189,6 +192,9 @@
       <Filter>GameScene\GameUILayer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Turntable.h">
+      <Filter>Area</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Goal.h">
       <Filter>Area</Filter>
     </ClInclude>
   </ItemGroup>

@@ -24,6 +24,7 @@ bool ScoreBoard::init()
 	}
 	makeLabels();
 	makeSprites();
+	addListener();
 	updateBoard();
 	return true;
 }
@@ -71,4 +72,11 @@ void ScoreBoard::makeSprites()
 	antSprite->setAnchorPoint(Vec2(0, 1));
 	addChild(coinSprite);
 	addChild(antSprite);
+}
+
+void ScoreBoard::addListener()
+{
+	cocos2d::EventListenerCustom* listener = cocos2d::EventListenerCustom::create(
+		"board Update", CC_CALLBACK_0(ScoreBoard::updateBoard, this));
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }

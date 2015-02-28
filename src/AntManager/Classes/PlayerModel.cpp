@@ -3,17 +3,11 @@
 
 
 PlayerModel::PlayerModel()
-	:m_Money(0)
+	:m_Money(100)
 {
 }
 
 PlayerModel::~PlayerModel()
 {
 
-}
-
-bool PlayerModel::init()
-{
-	m_Money = 100;
-	return true;
 }

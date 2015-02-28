@@ -20,7 +20,8 @@ public:
 private:
 
 private:
-	bool m_Active;
-	float m_ActiveTime;
-	float m_InactiveTime;
+	int		m_Type;
+	bool	m_Active;
+	float	m_ActiveTime;
+	float	m_InactiveTime;
 };
