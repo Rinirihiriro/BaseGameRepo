@@ -57,6 +57,7 @@ Json::Value DataManager::toJsonFromString(const std::string& string)
 
 MapModel* DataManager::getMapModel()
 {
+	//문제있는 코드
 	if(m_MapModel == nullptr)
 	{
 		m_MapModel = new MapModel();

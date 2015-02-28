@@ -26,7 +26,14 @@ public:
 private:
 	void			move(float dTime);
 	void			makeDirVector();
+	void			makeSprite();
+	void			initProbability();
+	bool			isNoWayToGo();
+	int				findBestDir();
 
 private:
-	std::array<cocos2d::Vec2, MD_MAX> m_DirVector;
+	int									m_MoveCount;
+	std::array<cocos2d::Vec2, MD_MAX>	m_DirVector;
+	std::array<int, MD_MAX>				m_DirProbability;
+	cocos2d::Sprite*					m_Sprite;
 };

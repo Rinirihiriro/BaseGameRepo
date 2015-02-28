@@ -46,6 +46,9 @@
     <Filter Include="Json">
       <UniqueIdentifier>{f9015058-a486-4917-ac6b-6cf6897ac6b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Area">
+      <UniqueIdentifier>{1b208771-803c-4db4-8954-eb38d22ce9b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -87,14 +90,14 @@
     <ClCompile Include="..\Classes\jsoncpp.cpp">
       <Filter>Json</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ResourceManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Unit.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Ant.cpp">
       <Filter>Object\Ant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Area.cpp">
+      <Filter>Area</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,14 +155,14 @@
     <ClInclude Include="..\Classes\json-forwards.h">
       <Filter>Json</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ResourceManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Unit.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Ant.h">
       <Filter>Object\Ant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Area.h">
+      <Filter>Area</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -33,13 +33,13 @@ void GameMap::makeTiles()
 	int checkIdx = 0;
 	Point setPos;
 	m_Tiles.resize(width*height);
-	for(int yIdx = 0; yIdx < height; ++yIdx)
+	for(int xIdx = 0; xIdx < width; ++xIdx)
 	{
-		for(int xIdx = 0; xIdx < width; ++xIdx)
+		for(int yIdx = 0; yIdx < height; ++yIdx)
 		{
 			checkIdx = xIdx + yIdx * width;
 			setPos.x = xIdx * TILE_SIZE_WIDTH;
-			setPos.y = (height - yIdx) * TILE_SIZE_HEIGHT;
+			setPos.y = yIdx * TILE_SIZE_HEIGHT;
 			m_Tiles[checkIdx] = MapTile::create();
 			m_Tiles[checkIdx]->initTile(mapModel->getData(checkIdx));
 			m_Tiles[checkIdx]->setPosition(setPos);
