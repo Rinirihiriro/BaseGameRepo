@@ -108,7 +108,12 @@
     <ClCompile Include="..\Classes\PlayerModel.cpp">
       <Filter>Models</Filter>
     </ClCompile>
-    <ClCompile Include="Turntable.cpp" />
+    <ClCompile Include="..\Classes\Turntable.cpp">
+      <Filter>Area</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ScoreBoard.cpp">
+      <Filter>GameScene\GameUILayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -180,8 +185,11 @@
     <ClInclude Include="..\Classes\PlayerModel.h">
       <Filter>Models</Filter>
     </ClInclude>
-    <ClInclude Include="Turntable.h">
+    <ClInclude Include="..\Classes\Turntable.h">
       <Filter>Area</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ScoreBoard.h">
+      <Filter>GameScene\GameUILayer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

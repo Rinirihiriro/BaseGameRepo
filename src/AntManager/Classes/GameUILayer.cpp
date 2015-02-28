@@ -30,8 +30,10 @@ void GameUILayer::makeButtons()
 		Sprite::create("buy_button.png"), Sprite::create("buy_button.png"), 
 		CC_CALLBACK_1(GameUILayer::buyMenuCallBack, this));
 	auto winSize = Director::getInstance()->getWinSize();
+
 	Point sellButtonPos(0, 0);
 	Point buyButtonPos(winSize.width, 0);
+
 	sellButton->setPosition(sellButtonPos);
 	sellButton->setAnchorPoint(Vec2::ZERO);
 	buyButton->setPosition(buyButtonPos);
