@@ -39,22 +39,16 @@ void Ant::update(float dTime)
 	updatePosition(dTime);
 
 	auto pos = getPosition();
+
+	// 맵 밖으로 못 나가게
 	if (pos.x < 0)
-	{
 		pos.x = 0;
-	}
 	else if (pos.x > 480)
-	{
 		pos.x = 480;
-	}
 	if (pos.y < 0)
-	{
 		pos.y = 0;
-	}
 	else if (pos.y > 640)
-	{
 		pos.y = 640;
-	}
 
 	setPosition(pos);
 
@@ -81,11 +75,6 @@ void Ant::update(float dTime)
 				pos.y = dy + TILE_SIZE_WIDTH / 2;
 		}
 		setPosition(pos);
-
-		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, (rand()%200-100)*0.01f);
-		m_Sprite->runAction(
-			RotateTo::create(dTime, 90.f - CC_RADIANS_TO_DEGREES(m_Velocity.getAngle()))
-			);
 	}
 
 //	decideNextDirection(dTime);
@@ -94,29 +83,51 @@ void Ant::update(float dTime)
 
 void Ant::decideNextDirection(float dTime)
 {
-	float angle = CC_RADIANS_TO_DEGREES(m_Velocity.getAngle());
-	if (angle < 0)
-		angle = -angle;
-	float dice = (rand() % 1800) * 0.1f;
-	float delta = angle - dice;
+	bool directions[9] = { false, };
+	// 6 7 8
+	// 3 4 5
+	// 0 1 2
 
-	if (abs(delta) < 1.f)
+	auto pos = getPosition();
+	MapModel* mapModel = GET_GAME_MANAGER()->getMachine()->getMapModel();
+
+	int xIdx = pos.x / TILE_SIZE_WIDTH;
+	int yIdx = pos.y / TILE_SIZE_HEIGHT;
+
+	for (int y = 0; y < 3; ++y) {
+		for (int x = 0; x < 3; ++x) {
+			if (x == 1 && y == 1) continue;
+			if (x != 1 && y != 1) continue; // 좌우상하만 고려하기 위해
+
+			int xx = xIdx + x - 1;
+			int yy = yIdx + y - 1;
+			if (xx < 0 || xx >= mapModel->getWidth()
+				|| yy < 0 || yy >= mapModel->getHeight())
+				continue;
+
+			int checkIdx = xx + yy * mapModel->getWidth();
+			directions[x+y*3] = mapModel->getData(checkIdx) == 0;
+		}
+	}
+
+	std::vector<int> pocket;
+	for (int i = 0; i < _countof(directions); ++i)
 	{
-		// 전진
+		if (directions[i])
+			pocket.push_back(i);
+	}
+
+	// 사방이 벽
+	if (pocket.empty())
 		return;
-	}
-	else if (delta < 0)
-	{
-		// 좌회전
-//		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, 10.f * dTime);
-		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, 0.2f);
-	}
-	else
-	{
-		// 우회전
-//		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, -10.f * dTime);
-		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, -0.2f);
-	}
+
+	int targetDir = pocket[rand() % pocket.size()];
+
+	Vec2 target((targetDir % 3 - 1), (targetDir / 3 - 1));
+	target.normalize();
+	float amount = target.cross(m_Velocity.getNormalized());
+	m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, -0.5f * amount);
+
 	m_Sprite->runAction(
 		RotateTo::create(dTime, 90.f - CC_RADIANS_TO_DEGREES(m_Velocity.getAngle()))
 		);
