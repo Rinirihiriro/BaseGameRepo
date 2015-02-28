@@ -63,16 +63,16 @@ void Ant::update(float dTime)
 		if (abs(dx - pos.x) > abs(dy - pos.y))
 		{
 			if (dx > pos.x)
-				pos.x = dx - TILE_SIZE_WIDTH / 2;
+				pos.x = dx - TILE_SIZE_WIDTH * 0.6;
 			else
-				pos.x = dx + TILE_SIZE_WIDTH / 2;
+				pos.x = dx + TILE_SIZE_WIDTH * 0.6;
 		}
 		else
 		{
 			if (dy > pos.y)
-				pos.y = dy - TILE_SIZE_WIDTH / 2;
+				pos.y = dy - TILE_SIZE_WIDTH * 0.6;
 			else
-				pos.y = dy + TILE_SIZE_WIDTH / 2;
+				pos.y = dy + TILE_SIZE_WIDTH * 0.6;
 		}
 		setPosition(pos);
 	}
@@ -94,7 +94,7 @@ void Ant::decideNextDirection(float dTime)
 	int xIdx = pos.x / TILE_SIZE_WIDTH;
 	int yIdx = pos.y / TILE_SIZE_HEIGHT;
 
-	for (int y = 0; y < 3; ++y) {
+	for (int y = 1; y < 3; ++y) {
 		for (int x = 0; x < 3; ++x) {
 			if (x == 1 && y == 1) continue;
 			if (x != 1 && y != 1) continue; // 좌우상하만 고려하기 위해
