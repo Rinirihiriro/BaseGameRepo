@@ -17,17 +17,17 @@ void MapModel::initFromJson(const Json::Value& value)
 {
 	int checkIdx = 0;
 	int reversedIdx = 0;
+	
 	m_Width = value["width"].asInt();
 	m_Height = value["height"].asInt();
 	m_MapData.resize(m_Width * m_Height);
-
 	for(int xIdx = 0; xIdx < m_Width; ++xIdx)
 	{
 		for(int yIdx = 0; yIdx < m_Height; ++yIdx)
 		{
 			checkIdx = xIdx + yIdx * m_Width;
 			reversedIdx = xIdx + ( m_Height - yIdx - 1 ) * m_Width;
-			m_MapData[checkIdx] = value["tiles"][reversedIdx].asInt();
+			m_MapData[checkIdx] = value["tiles"][checkIdx].asInt();
 		}
 	}
 }
