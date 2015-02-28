@@ -1,6 +1,8 @@
 #include "Pch.h"
 #include "Ant.h"
 #include "DataManager.h"
+#include "GameManager.h"
+#include "MachineModel.h"
 #include "MapModel.h"
 #include "Define.h"
 
@@ -40,7 +42,7 @@ void Ant::move(float dTime)
 	if(m_MoveCount++ > 5)
 	{
 		m_MoveCount = 0;
-		MapModel* mapModel = GET_DATA_MANAGER()->getMapModel();
+		MapModel* mapModel = GET_GAME_MANAGER()->getMachine()->getMapModel();
 		Rect fieldRect(0, 0, 480, 640);
 		int moveDirection = findBestDir();
 		Vec2 moveVec = m_DirVector[moveDirection] * dTime * 300;

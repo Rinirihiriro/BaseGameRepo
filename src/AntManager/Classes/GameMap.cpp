@@ -21,15 +21,19 @@ bool GameMap::init()
 	{
 		return false;
 	}
-	makeTiles();
 	return true;
+}
+
+void GameMap::initWithModel(MapModel* mapModel)
+{
+	m_MapModel = mapModel;
+	makeTiles();
 }
 
 void GameMap::makeTiles()
 {
-	MapModel* mapModel = GET_DATA_MANAGER()->getMapModel();
-	int width = mapModel->getWidth();
-	int height = mapModel->getHeight();
+	int width = m_MapModel->getWidth();
+	int height = m_MapModel->getHeight();
 	int checkIdx = 0;
 	Point setPos;
 	m_Tiles.resize(width*height);
@@ -41,9 +45,10 @@ void GameMap::makeTiles()
 			setPos.x = xIdx * TILE_SIZE_WIDTH;
 			setPos.y = yIdx * TILE_SIZE_HEIGHT;
 			m_Tiles[checkIdx] = MapTile::create();
-			m_Tiles[checkIdx]->initTile(mapModel->getData(checkIdx));
+			m_Tiles[checkIdx]->initTile(m_MapModel->getData(checkIdx));
 			m_Tiles[checkIdx]->setPosition(setPos);
 			addChild(m_Tiles[checkIdx]);
 		}
 	}
 }
+

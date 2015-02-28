@@ -12,19 +12,13 @@ MapModel::~MapModel()
 {
 }
 
-void MapModel::initFromFile(const std::string& filePath)
-{
-	std::string str = GET_DATA_MANAGER()->readFromFile(filePath);
-	fromJson(GET_DATA_MANAGER()->toJsonFromString(str));
-}
 
-void MapModel::fromJson(const Json::Value& value)
+void MapModel::initFromJson(const Json::Value& value)
 {
 	int checkIdx = 0;
 	int reversedIdx = 0;
-	Json::Value tileData = value["tile"];
-	m_Width = tileData["width"].asInt();
-	m_Height = tileData["height"].asInt();
+	m_Width = value["width"].asInt();
+	m_Height = value["height"].asInt();
 	m_MapData.resize(m_Width * m_Height);
 
 	for(int xIdx = 0; xIdx < m_Width; ++xIdx)
@@ -33,7 +27,7 @@ void MapModel::fromJson(const Json::Value& value)
 		{
 			checkIdx = xIdx + yIdx * m_Width;
 			reversedIdx = xIdx + ( m_Height - yIdx - 1 ) * m_Width;
-			m_MapData[checkIdx] = tileData["tiles"][reversedIdx].asInt();
+			m_MapData[checkIdx] = value["tiles"][reversedIdx].asInt();
 		}
 	}
 }

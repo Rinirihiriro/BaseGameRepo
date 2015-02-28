@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "TitleScene.h"
-#include "SceneManager.h"
+#include "GameManager.h"
 #include "Type.h"
 
 USING_NS_CC;
@@ -59,7 +59,7 @@ void TitleScene::menuCloseCallback(Ref* pSender)
 
 void TitleScene::menuStartCallback(cocos2d::Ref* pSender)
 {
-	GET_SCENE_MANAGER()->changeScene(SceneType::ST_GAME);
+	GET_GAME_MANAGER()->startGame(1);
 }
 
 

@@ -7,11 +7,12 @@ class GameMap : public cocos2d::Node
 public:
 	GameMap();
 	virtual ~GameMap();
-	virtual bool init();
-
+	virtual bool	init();
+	void			initWithModel(MapModel* mapModel);
+	void			makeTiles();
 	CREATE_FUNC(GameMap);
-private:
-	void		makeTiles();
+
 private:
 	std::vector<MapTile*>	m_Tiles;
+	MapModel*				m_MapModel;
 };

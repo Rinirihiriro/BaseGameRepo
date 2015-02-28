@@ -144,11 +144,13 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\GameUILayer.cpp" />
     <ClCompile Include="..\Classes\GameMap.cpp" />
     <ClCompile Include="..\Classes\jsoncpp.cpp" />
+    <ClCompile Include="..\Classes\MachineModel.cpp" />
     <ClCompile Include="..\Classes\MapModel.cpp" />
     <ClCompile Include="..\Classes\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\Classes\SceneManager.cpp" />
+    <ClCompile Include="..\Classes\PlayerModel.cpp" />
+    <ClCompile Include="..\Classes\GameManager.cpp" />
     <ClCompile Include="..\Classes\MapTile.cpp" />
     <ClCompile Include="..\Classes\TitleScene.cpp" />
     <ClCompile Include="..\Classes\Unit.cpp" />
@@ -165,12 +167,14 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GameUILayer.h" />
     <ClInclude Include="..\Classes\json-forwards.h" />
     <ClInclude Include="..\Classes\json.h" />
+    <ClInclude Include="..\Classes\MachineModel.h" />
     <ClInclude Include="..\Classes\Macro.h" />
     <ClInclude Include="..\Classes\GameMap.h" />
     <ClInclude Include="..\Classes\MapModel.h" />
     <ClInclude Include="..\Classes\MapTile.h" />
     <ClInclude Include="..\Classes\Pch.h" />
-    <ClInclude Include="..\Classes\SceneManager.h" />
+    <ClInclude Include="..\Classes\PlayerModel.h" />
+    <ClInclude Include="..\Classes\GameManager.h" />
     <ClInclude Include="..\Classes\TitleScene.h" />
     <ClInclude Include="..\Classes\Type.h" />
     <ClInclude Include="..\Classes\Unit.h" />

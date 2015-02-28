@@ -49,6 +49,9 @@
     <Filter Include="Area">
       <UniqueIdentifier>{1b208771-803c-4db4-8954-eb38d22ce9b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{4f33c960-fb96-46c1-b347-b8cad6812fa3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>App</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\SceneManager.cpp">
-      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Pch.cpp">
       <Filter>Pch</Filter>
@@ -84,9 +84,6 @@
     <ClCompile Include="..\Classes\DataManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MapModel.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\jsoncpp.cpp">
       <Filter>Json</Filter>
     </ClCompile>
@@ -98,6 +95,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Area.cpp">
       <Filter>Area</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MapModel.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MachineModel.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PlayerModel.cpp">
+      <Filter>Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +131,6 @@
     <ClInclude Include="..\Classes\Type.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SceneManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>GameScene</Filter>
     </ClInclude>
@@ -146,9 +152,6 @@
     <ClInclude Include="..\Classes\DataManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MapModel.h">
-      <Filter>Map</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\json.h">
       <Filter>Json</Filter>
     </ClInclude>
@@ -163,6 +166,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Area.h">
       <Filter>Area</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MapModel.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MachineModel.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlayerModel.h">
+      <Filter>Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

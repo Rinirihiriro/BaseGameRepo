@@ -11,7 +11,6 @@ public:
 	void				releaseInstance();
 	std::string			readFromFile(const std::string& filePath);
 	Json::Value			toJsonFromString(const std::string& string);
-	MapModel*			getMapModel();
 
 private:
 	DataManager();
@@ -19,6 +18,5 @@ private:
 
 private:
 	static DataManager*	m_Instance;
-	MapModel*			m_MapModel;
 };
 
