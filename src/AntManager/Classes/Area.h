@@ -1,5 +1,7 @@
 #pragma once
 
+class Unit;
+
 class Area : public cocos2d::Node
 {
 public:
@@ -9,8 +11,14 @@ public:
 	virtual	void update(float dTime);
 
 	CREATE_FUNC(Area);
-private:
+
+	virtual bool isContain(const cocos2d::Point& point) const;
 
 private:
+	virtual void effectOnUnit(Unit* u) = 0;
 
+private:
+	bool m_Active;
+	float m_ActiveTime;
+	float m_InactiveTime;
 };

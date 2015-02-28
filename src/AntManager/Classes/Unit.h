@@ -4,9 +4,11 @@
 class Unit :public cocos2d::Node
 {
 public:
-	cocos2d::Vec2 direction;
+	virtual ~Unit() = 0;
 
-private:
+	void updatePosition(const float dTime);
 
+protected:
+	cocos2d::Vec2 m_Velocity;
 
 };
