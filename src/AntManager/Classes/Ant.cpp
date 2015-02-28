@@ -39,6 +39,25 @@ void Ant::update(float dTime)
 	updatePosition(dTime);
 
 	auto pos = getPosition();
+	if (pos.x < 0)
+	{
+		pos.x = 0;
+	}
+	else if (pos.x > 480)
+	{
+		pos.x = 480;
+	}
+	if (pos.y < 0)
+	{
+		pos.y = 0;
+	}
+	else if (pos.y > 640)
+	{
+		pos.y = 640;
+	}
+
+	setPosition(pos);
+
 	MapModel* mapModel = GET_GAME_MANAGER()->getMachine()->getMapModel();
 	int xIdx = pos.x / TILE_SIZE_WIDTH;
 	int yIdx = pos.y / TILE_SIZE_HEIGHT;
@@ -76,6 +95,8 @@ void Ant::update(float dTime)
 void Ant::decideNextDirection(float dTime)
 {
 	float angle = CC_RADIANS_TO_DEGREES(m_Velocity.getAngle());
+	if (angle < 0)
+		angle = -angle;
 	float dice = (rand() % 1800) * 0.1f;
 	float delta = angle - dice;
 
