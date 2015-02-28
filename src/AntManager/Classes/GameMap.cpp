@@ -24,6 +24,7 @@ bool GameMap::init()
 		return false;
 	}
 	addListener();
+	scheduleUpdate();
 	return true;
 }
 
@@ -62,12 +63,18 @@ void GameMap::makeAreas()
 	auto goal1 = Goal::create();
 	goal1->initWithRect(Rect(16 * 3, 640 - 16 * 2, 16 * 4, 16 * 2));
 	addChild(goal1);
+	m_Areas.push_back(goal1);
+
 	auto goal2 = Goal::create();
 	goal2->initWithRect(Rect(16 * 13, 640 - 16 * 2, 16 * 4, 16 * 2));
 	addChild(goal2);
+	m_Areas.push_back(goal2);
+
 	auto goal3 = Goal::create();
 	goal3->initWithRect(Rect(16 * 23, 640 - 16 * 2, 16 * 4, 16 * 2));
 	addChild(goal3);
+	m_Areas.push_back(goal3);
+
 }
 
 void GameMap::addListener()
@@ -90,4 +97,23 @@ void GameMap::addAnt()
 	ant->setPosition(Point(setPosX, 0));
 	addChild(ant);
 	m_Ants.push_back(ant);
+}
+
+void GameMap::checkArea()
+{
+	for(auto ant : m_Ants)
+	{
+		for(auto area : m_Areas)
+		{
+			if(area->isContain(ant->getPosition()))
+			{
+				area->effectOnUnit(ant);
+			}
+		}
+	}
+}
+
+void GameMap::update(float dTime)
+{
+	checkArea();
 }

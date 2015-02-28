@@ -10,12 +10,14 @@ public:
 	GameMap();
 	virtual ~GameMap();
 	virtual bool	init();
+	virtual void	update(float dTime);
 	void			initWithModel(MapModel* mapModel);
 	void			addAnt();
-
+	
 	CREATE_FUNC(GameMap);
 
 private:
+	void			checkArea();
 	void			makeTiles();
 	void			makeAreas();
 	void			addListener();
