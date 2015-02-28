@@ -1,7 +1,7 @@
 #pragma once
 
 //GameScene에 있는 위아래 UI를 담는 레이어
-
+class ScoreBoard;
 class GameUILayer : public cocos2d::Layer
 {
 public:
@@ -14,5 +14,9 @@ public:
 
 private:
 	void			makeButtons();
+
 private:
+	cocos2d::LabelTTF*	m_Score;
+	cocos2d::LabelTTF*	m_AntsCount;
+	ScoreBoard*			m_ScoreBoard;
 };

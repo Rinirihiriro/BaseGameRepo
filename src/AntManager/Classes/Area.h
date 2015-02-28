@@ -10,7 +10,7 @@ public:
 	virtual bool init();
 	virtual	void update(float dTime);
 
-	CREATE_FUNC(Area);
+	//CREATE_FUNC(Area);
 
 	virtual bool isContain(const cocos2d::Point& point) const = 0;
 	virtual void effectOnUnit(Unit* u) = 0;

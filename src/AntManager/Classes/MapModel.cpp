@@ -27,7 +27,7 @@ void MapModel::initFromJson(const Json::Value& value)
 		{
 			checkIdx = xIdx + yIdx * m_Width;
 			reversedIdx = xIdx + ( m_Height - yIdx - 1 ) * m_Width;
-			m_MapData[checkIdx] = value["tiles"][checkIdx].asInt();
+			m_MapData[checkIdx] = value["tiles"][reversedIdx].asInt();
 		}
 	}
 }
