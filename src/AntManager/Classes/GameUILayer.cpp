@@ -1,5 +1,6 @@
 #include "Pch.h"
 #include "GameUILayer.h"
+#include "ScoreBoard.h"
 
 USING_NS_CC;
 
@@ -18,6 +19,7 @@ bool GameUILayer::init()
 		return false;
 	}
 	makeButtons();
+	makeScoreBoard();
 	return true;
 }
 
@@ -50,4 +52,10 @@ void GameUILayer::sellMenuCallBack(cocos2d::Ref* ref)
 void GameUILayer::buyMenuCallBack(cocos2d::Ref* ref)
 {
 
+}
+
+void GameUILayer::makeScoreBoard()
+{
+	m_ScoreBoard = ScoreBoard::create();
+	addChild(m_ScoreBoard);
 }
