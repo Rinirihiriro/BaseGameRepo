@@ -14,9 +14,8 @@ public:
 
 private:
 	void			makeButtons();
+	void			makeScoreBoard();
 
 private:
-	cocos2d::LabelTTF*	m_Score;
-	cocos2d::LabelTTF*	m_AntsCount;
-	ScoreBoard*			m_ScoreBoard;
+	ScoreBoard*		m_ScoreBoard;
 };

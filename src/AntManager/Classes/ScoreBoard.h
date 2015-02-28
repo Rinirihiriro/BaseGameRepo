@@ -13,6 +13,6 @@ private:
 	void			makeLabels();
 	void			makeSprites();
 private:
-	cocos2d::LabelTTF*	m_Label;
-	cocos2d::LabelTTF*	m_Score;
+	cocos2d::Label*	m_Ants;
+	cocos2d::Label*	m_Money;
 };
