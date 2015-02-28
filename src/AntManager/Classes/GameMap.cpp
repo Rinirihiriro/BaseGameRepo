@@ -4,6 +4,7 @@
 #include "MapModel.h"
 #include "MapTile.h"
 #include "Define.h"
+#include "Ant.h"
 
 USING_NS_CC;
 
@@ -21,6 +22,7 @@ bool GameMap::init()
 	{
 		return false;
 	}
+	addListener();
 	return true;
 }
 
@@ -50,5 +52,27 @@ void GameMap::makeTiles()
 			addChild(m_Tiles[checkIdx]);
 		}
 	}
+}
+
+void GameMap::addAnt()
+{
+	auto ant = Ant::create();
+	int leftIdx = 0;
+	int rightIdx = 0;
+	m_MapModel->findFirstGate(&leftIdx, &rightIdx);
+	float leftPos = leftIdx * TILE_SIZE_WIDTH;
+	float rightPos = rightIdx * TILE_SIZE_WIDTH;
+	float setPosX = leftPos + rand() % (int) ( rightPos - leftPos );
+
+	ant->setPosition(Point(setPosX, 0));
+	addChild(ant);
+	m_Ants.push_back(ant);
+}
+
+void GameMap::addListener()
+{
+	cocos2d::EventListenerCustom* listener = cocos2d::EventListenerCustom::create(
+		"add Ant", CC_CALLBACK_0(GameMap::addAnt, this));
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
 

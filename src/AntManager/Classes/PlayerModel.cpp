@@ -14,5 +14,6 @@ PlayerModel::~PlayerModel()
 
 bool PlayerModel::init()
 {
-	return false;
+	m_Money = 100;
+	return true;
 }

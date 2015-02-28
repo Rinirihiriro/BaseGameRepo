@@ -14,9 +14,9 @@ public:
 
 	CREATE_FUNC(FieldLayer);
 private:
+	void			addListener();
 
 private:
-	float			m_AccTime;
 	GameMap*		m_GameMap;
 	MachineModel*	m_MachineModel;
 };

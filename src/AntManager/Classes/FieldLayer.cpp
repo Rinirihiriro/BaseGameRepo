@@ -8,7 +8,7 @@
 USING_NS_CC;
 
 FieldLayer::FieldLayer()
-	:m_GameMap(nullptr), m_AccTime(0.f)
+	:m_GameMap(nullptr)
 {
 }
 
@@ -33,14 +33,9 @@ bool FieldLayer::init()
 
 void FieldLayer::update(float dTime)
 {
-	m_AccTime += dTime;
-	if(m_AccTime > 1.f)
-	{
-		m_AccTime = 0;
-		auto newAnt = Ant::create();
-		float posX = 480/2 + (rand() % 40) - 40;
-		newAnt->setPosition(Point(posX, 0.f));
-		addChild(newAnt);
-	}
+}
+
+void FieldLayer::addListener()
+{
 }
 

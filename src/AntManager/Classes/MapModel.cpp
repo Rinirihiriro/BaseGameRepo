@@ -41,3 +41,26 @@ int MapModel::getData(int idx)
 	}
 	return returnType;
 }
+
+bool MapModel::findFirstGate(int* leftIdx, int* rightIdx)
+{
+	int checkIdx = 0;
+	bool isFirst = true;
+	bool isContinuosOpen = false;
+	for(int xIdx = 0; xIdx < m_Width; ++xIdx)
+	{
+		checkIdx = xIdx;
+		if(isFirst && m_MapData[checkIdx] == 0)
+		{
+			isFirst = false;
+			isContinuosOpen = true;
+			*leftIdx = xIdx;
+		}
+		else if(isContinuosOpen && m_MapData[checkIdx] != 0)
+		{
+			*rightIdx = xIdx;
+			break;
+		}
+	}
+	return true;
+}

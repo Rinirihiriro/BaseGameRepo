@@ -8,7 +8,7 @@ public:
 	virtual	~MapModel();
 	void	initFromJson(const Json::Value& value);
 	int		getData(int idx);
-
+	bool	findFirstGate(int* leftIdx, int* rightIdx);
 private:
 	
 private:

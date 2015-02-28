@@ -16,3 +16,5 @@ if (PTR != nullptr)\
 	PTR = nullptr; \
 	}\
 }
+
+#define EVENT_DISPATCH cocos2d::Director::getInstance()->getEventDispatcher()->dispatchCustomEvent 
