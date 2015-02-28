@@ -31,6 +31,8 @@ private:
 	bool			isNoWayToGo();
 	int				findBestDir();
 
+	void decideNextDirection(float dTime);
+
 private:
 	int									m_MoveCount;
 	std::array<cocos2d::Vec2, MD_MAX>	m_DirVector;

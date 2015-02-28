@@ -28,13 +28,77 @@ bool Ant::init()
 	makeDirVector();
 	makeSprite();
 	scheduleUpdate();
-	initProbability();
+	schedule(schedule_selector(Ant::decideNextDirection), 0.5f);
+//	initProbability();
+	m_Velocity = Vec2::UNIT_Y * (rand() % 10 + 20);
 	return true;
 }
 
 void Ant::update(float dTime)
 {
-	move(dTime);
+	updatePosition(dTime);
+
+	auto pos = getPosition();
+	MapModel* mapModel = GET_GAME_MANAGER()->getMachine()->getMapModel();
+	int xIdx = pos.x / TILE_SIZE_WIDTH;
+	int yIdx = pos.y / TILE_SIZE_HEIGHT;
+	int checkIdx = xIdx + yIdx * mapModel->getWidth();
+	if (mapModel->getData(checkIdx) != 0)
+	{
+		float dx = (xIdx + 0.5f) * TILE_SIZE_WIDTH;
+		float dy = (yIdx + 0.5f) * TILE_SIZE_HEIGHT;
+		if (abs(dx - pos.x) > abs(dy - pos.y))
+		{
+			if (dx > pos.x)
+				pos.x = dx - TILE_SIZE_WIDTH / 2;
+			else
+				pos.x = dx + TILE_SIZE_WIDTH / 2;
+		}
+		else
+		{
+			if (dy > pos.y)
+				pos.y = dy - TILE_SIZE_WIDTH / 2;
+			else
+				pos.y = dy + TILE_SIZE_WIDTH / 2;
+		}
+		setPosition(pos);
+
+		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, (rand()%200-100)*0.01f);
+		m_Sprite->runAction(
+			RotateTo::create(dTime, 90.f - CC_RADIANS_TO_DEGREES(m_Velocity.getAngle()))
+			);
+	}
+
+//	decideNextDirection(dTime);
+	// move(dTime);
+}
+
+void Ant::decideNextDirection(float dTime)
+{
+	float angle = CC_RADIANS_TO_DEGREES(m_Velocity.getAngle());
+	float dice = (rand() % 1800) * 0.1f;
+	float delta = angle - dice;
+
+	if (abs(delta) < 1.f)
+	{
+		// 전진
+		return;
+	}
+	else if (delta < 0)
+	{
+		// 좌회전
+//		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, 10.f * dTime);
+		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, 0.2f);
+	}
+	else
+	{
+		// 우회전
+//		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, -10.f * dTime);
+		m_Velocity = m_Velocity.rotateByAngle(Vec2::ZERO, -0.2f);
+	}
+	m_Sprite->runAction(
+		RotateTo::create(dTime, 90.f - CC_RADIANS_TO_DEGREES(m_Velocity.getAngle()))
+		);
 }
 
 void Ant::move(float dTime)
