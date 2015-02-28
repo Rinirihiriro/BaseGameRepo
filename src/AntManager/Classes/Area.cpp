@@ -25,6 +25,6 @@ bool Area::init()
 
 void Area::update(float dTime)
 {
-
+		
 }
 
