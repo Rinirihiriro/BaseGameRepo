@@ -7,6 +7,7 @@ function loadData() {
 	var data = [
 		"tile.png"
 		,"turntable.png"
+		,"goal.png"
 		];
 	data.forEach(function(img_name){
 		res.img[img_name] = new Image();
@@ -303,6 +304,7 @@ function editTileInputProc() {
 var areas = [];
 
 var AREA_TURNTABLE = "turntable";
+var AREA_GOAL = "goal";
 var cursor_area = {
 	type: AREA_TURNTABLE
 	, width: 100
@@ -327,7 +329,7 @@ function drawAreaImage(src, x, y, w, h) {
 
 function getAreaObject(x, y) {
 	for (var i = 0; i < areas.length; ++i) {
-		if (areas[i].checkRect(x, y)) {
+		if (AreaObject.checkRect(areas[i], x, y)) {
 			return areas[i];
 		}
 	}
@@ -337,10 +339,20 @@ function getAreaObject(x, y) {
 function editAreaInputProc() {
 	if (mouse.isTriggered(0)) {
 		var area = null;
+		var x = mouse.x;
+		var y = mouse.y;
+		if (!key.isPressed(17)) // Ctrl
+		{
+			x = Math.round(x / tile_size) * tile_size;
+			y = Math.round(y / tile_size) * tile_size;
+		}
 		switch (cursor_area.type)
 		{
 		case AREA_TURNTABLE:
-			area = AreaObject.makeTurntable(mouse.x, mouse.y, cursor_area.width/2, false);
+			area = AreaObject.makeTurntable(x, y, cursor_area.width/2, false);
+			break;
+		case AREA_GOAL:
+			area = AreaObject.makeGoal(x, y, cursor_area.width, cursor_area.height, 2);
 			break;
 		};
 		if (area) {
@@ -349,7 +361,7 @@ function editAreaInputProc() {
 	}
 	else if (mouse.isTriggered(2)) {
 		for (var i = 0; i < areas.length; ++i) {
-			if (areas[i].checkRect(mouse.x, mouse.y)) {
+			if (AreaObject.checkRect(areas[i], mouse.x, mouse.y)) {
 				areas.splice(i, 1);
 				break;
 			}
@@ -370,6 +382,17 @@ function editAreaInputProc() {
 		cursor_area.width += 10;
 		cursor_area.height += 10;
 	}
+
+	else if (key.isTriggered('T'.charCodeAt(0)))
+	{
+		cursor_area.type = AREA_TURNTABLE;
+		cursor_area.img = cursor_area.type + ".png";
+	}
+	else if (key.isTriggered('L'.charCodeAt(0)))
+	{
+		cursor_area.type = AREA_GOAL;
+		cursor_area.img = cursor_area.type + ".png";
+	}
 }
 
 function AreaObject(type, x, y, width, height, subtype, img) {
@@ -386,7 +409,12 @@ AreaObject.makeTurntable = function(x, y, radius, ccw){
 	return new AreaObject(AREA_TURNTABLE, x, y, radius*2, radius*2, subtype, AREA_TURNTABLE + ".png");
 };
 
-AreaObject.prototype.checkRect = function(x, y){
-	return Math.abs(this.pos[0] - x)*2 < this.width &&
-		Math.abs(this.pos[1] - y)*2 < this.height;
+AreaObject.makeGoal = function(x, y, width, height, mult){
+	var subtype = "x" + mult;
+	return new AreaObject(AREA_GOAL, x, y, width, height, subtype, AREA_GOAL+ ".png");
+};
+
+AreaObject.checkRect = function(obj, x, y){
+	return Math.abs(obj.pos[0] - x)*2 < obj.width &&
+		Math.abs(obj.pos[1] - y)*2 < obj.height;
 };
