@@ -191,7 +191,8 @@ function saveStageData() {
 		},
 		area: areas
 	};
-	prompt("복사하시오.", JSON.stringify(o));
+	var winhandle = window.open('','복사하시오','width=400, height=300');
+	winhandle.document.write(JSON.stringify(o));
 }
 
 //----------------------------------------[Tile]----------------------------------------
