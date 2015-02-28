@@ -140,7 +140,7 @@ function draw() {
 	{
 	case TILE_MODE:
 		g.globalAlpha = 0.75;
-		drawTileImage(cursor_tile_id, mouse.x - 20, mouse.y - 20);
+		drawTileImage(cursor_tile_id, mouse.x - tile_size/2, mouse.y - tile_size/2);
 		g.globalAlpha = 1;
 		break;
 	case AREA_MODE:
@@ -152,14 +152,16 @@ function draw() {
 
 }
 
+var tile_size = 16;
+
 function drawGrid() {
 	g.beginPath();
 
-	for (var x = 40; x < canv.width; x += 40) {
+	for (var x = tile_size; x < canv.width; x += tile_size) {
 		g.moveTo(x, 0);
 		g.lineTo(x, canv.height);
 	}
-	for (var y = 40; y < canv.height; y += 40) {
+	for (var y = tile_size; y < canv.height; y += tile_size) {
 		g.moveTo(0, y);
 		g.lineTo(canv.width, y);
 	}
@@ -195,9 +197,13 @@ function saveStageData() {
 //----------------------------------------[Tile]----------------------------------------
 
 var tiles = [];
-var tile_w = 480/40;
-var tile_h = 640/40;
+var tile_w = 480/tile_size;
+var tile_h = 640/tile_size;
 var tile_num = tile_w * tile_h;
+
+var tile_img_w = 256/tile_size;
+var tile_img_h = 256/tile_size;
+var tile_img_num = tile_img_w * tile_img_h;
 
 var cursor_tile_id = 1;
 
@@ -215,14 +221,14 @@ function drawTile() {
 	for (var i = 0; i < tile_num; ++i) {
 		var x = i % tile_w;
 		var y = Math.floor(i / tile_w);
-		drawTileImage(tiles[i], x*40 + 5, y*40 + 5);
+		drawTileImage(tiles[i], x*tile_size + 5, y*tile_size + 5);
 	}
 	g.globalAlpha = 1;
 	
 	for (var i = 0; i < tile_num; ++i) {
 		var x = i % tile_w;
 		var y = Math.floor(i / tile_w);
-		drawTileImage(tiles[i], x*40, y*40);
+		drawTileImage(tiles[i], x*tile_size, y*tile_size);
 /*
 		g.fillStyle = "grey";
 		g.font = "12px Arial";
@@ -234,23 +240,23 @@ function drawTile() {
 }
 
 function drawPalette() {
-	for (var i = 0; i < 36; ++i) {
-		var x = i % tile_w;
-		var y = Math.floor(i / tile_w);
-		drawTileImage(i, x*40, y*40);
+	for (var i = 0; i < tile_img_num; ++i) {
+		var x = i % tile_img_w;
+		var y = Math.floor(i / tile_img_w);
+		drawTileImage(i, x*tile_size, y*tile_size);
 	}
 }
 
 function drawTileImage(id, x, y) {
-	var sx = id % 6;
-	var sy = Math.floor(id / 6);
-	g.drawImage(res.img["tile.png"], sx*40, sy*40, 40, 40, x, y, 40, 40);
+	var sx = id % tile_img_w;
+	var sy = Math.floor(id / tile_img_w);
+	g.drawImage(res.img["tile.png"], sx*tile_size, sy*tile_size, tile_size, tile_size, x, y, tile_size, tile_size);
 }
 
 function getTileXY(mouse_x, mouse_y) {
 	var x = mouse_x;
 	var y = mouse_y;
-	return {x: Math.floor(x/40), y: Math.floor(y/40)};
+	return {x: Math.floor(x/tile_size), y: Math.floor(y/tile_size)};
 }
 
 function getTileID(x, y) {
@@ -268,7 +274,8 @@ function editTileInputProc() {
 		var id = getTileID(coord.x, coord.y);
 
 		if (tile_select_mode) {
-			if (id < 36)
+			id = coord.x + coord.y * tile_img_w;
+			if (id < tile_img_num)
 				cursor_tile_id = id;
 		}
 		else {
@@ -279,7 +286,7 @@ function editTileInputProc() {
 		var coord = getTileXY(mouse.x, mouse.y);
 		var id = getTileID(coord.x, coord.y);
 		if (tile_select_mode) {
-			if (id < 36)
+			if (id < tile_img_num)
 				cursor_tile_id = id;
 		}
 		else {
