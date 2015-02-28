@@ -154,9 +154,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\MapTile.cpp" />
     <ClCompile Include="..\Classes\ScoreBoard.cpp" />
     <ClCompile Include="..\Classes\TitleScene.cpp" />
+    <ClCompile Include="..\Classes\Turntable.cpp" />
     <ClCompile Include="..\Classes\Unit.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Turntable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\Ant.h" />
@@ -179,11 +179,11 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GameManager.h" />
     <ClInclude Include="..\Classes\ScoreBoard.h" />
     <ClInclude Include="..\Classes\TitleScene.h" />
+    <ClInclude Include="..\Classes\Turntable.h" />
     <ClInclude Include="..\Classes\Type.h" />
     <ClInclude Include="..\Classes\Unit.h" />
     <ClInclude Include="..\Classes\Utils.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="Turntable.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\cocos2d.vcxproj">
