@@ -108,6 +108,7 @@
     <ClCompile Include="..\Classes\PlayerModel.cpp">
       <Filter>Models</Filter>
     </ClCompile>
+    <ClCompile Include="Turntable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -178,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PlayerModel.h">
       <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Turntable.h">
+      <Filter>Area</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
