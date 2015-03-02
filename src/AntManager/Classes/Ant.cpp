@@ -27,7 +27,7 @@ bool Ant::init()
 	makeSprite();
 	scheduleUpdate();
 	schedule(schedule_selector(Ant::decideNextDirection), 0.5f);
-	m_Velocity = Vec2::UNIT_Y * (rand() % 10 + 20);
+	m_Velocity = Vec2::UNIT_Y * ( rand() % 10 + 20 );
 	return true;
 }
 
